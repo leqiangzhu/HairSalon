@@ -1,0 +1,10 @@
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.0.4/HairSalon.deps.json
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.0.4/HairSalon.runtimeconfig.json
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.0.4/HairSalon.runtimeconfig.dev.json
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.0.4/HairSalon.dll
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.0.4/HairSalon.pdb
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.0.4/HairSalon.csproj.CoreCompileInputs.cache
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.0.4/HairSalon.AssemblyInfo.cs
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.0.4/HairSalon.dll
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.0.4/HairSalon.pdb
+/Users/ya-tzucheng/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.0.4/HairSalon.csprojResolveAssemblyReference.cache
