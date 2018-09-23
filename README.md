@@ -12,8 +12,8 @@ An application allows user
 
 
 ## Setup/Installation Requirements
-* clone the WordCounter.Solution
-* run the WordCounter/Models/WordCounter.exe
+* clone the HairSalon.Solution
+* run the HairSalon/Models/WordCounter.cs
 
 ## Known Bugs
 * No known bugs at this time.
