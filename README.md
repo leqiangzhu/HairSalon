@@ -13,7 +13,7 @@ An application allows user
 
 ## Setup/Installation Requirements
 * clone the HairSalon.Solution
-* run the HairSalon/Models/WordCounter.cs
+* run the HairSalon/Models/
 
 ## Known Bugs
 * No known bugs at this time.
