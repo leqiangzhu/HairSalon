@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+<div class='container'>
+<h1>Hair Salon System</h1>
+
+
+
+<h1>All the Clients Infomation</h1>
+
+
+<p><a href='/client/new'>Add a New Client<a/></p>
+<br/>
+
+<h2>Name</h2>
+  @foreach(var client in Model)
+  { 
+    <li>@client.GetClientName()</li>
+  }
+
+<a href="/">HOME</a>
+</div>

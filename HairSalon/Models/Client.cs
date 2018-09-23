@@ -23,19 +23,19 @@ namespace HairSalon.Models
         {
             return _clientName;
         }
-        public void SetClientName(string clientName)
-        {
-            _clientName = clientName;
-        }
+        // public void SetClientName(string clientName)
+        // {
+        //     _clientName = clientName;
+        // }
 
          public int GetClientId()
         {
             return _clientId;
         }
-        public void SetClientId(int clientId)
-        {
-            _clientId = clientId;
-        }
+        // public void SetClientId(int clientId)
+        // {
+        //     _clientId = clientId;
+        // }
         public int GetStylistId()
         {
             return _stylistId;
@@ -58,35 +58,11 @@ namespace HairSalon.Models
 
         public override int GetHashCode()
         {
-            return this.GetClientName().GetHashCode();
+            return this.GetClientId().GetHashCode();
         }
 
-        public static List<Client> GetAll()
-        {
-            List<Client> allClients = new List<Client> {};
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM clients;";
-            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-            while(rdr.Read())
+             public void Save()
             {
-              int clientId = rdr.GetInt32(0);
-              string clientName = rdr.GetString(1);
-              Client newClient = new Client(clientName, clientId);
-              allClients.Add(newClient);
-            }
-            conn.Close();
-            if (conn != null)
-            {
-                conn.Dispose();
-            }
-            return allClients;
-            }
-
-
-            public void Save()
-        {
             MySqlConnection conn = DB.Connection();
             conn.Open();
 
@@ -111,7 +87,65 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
-        }
+            }
+        public static List<Client> GetAllClients()
+        {
+            List<Client> allClients = new List<Client> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM clients;";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+              int clientId = rdr.GetInt32(0);
+              string clientName = rdr.GetString(1);
+              int stylistId=rdr.GetInt32(2);
+              Client newClient = new Client(clientName, stylistId,clientId);
+              allClients.Add(newClient);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return allClients;
+            }
+
+
+            
+            public static Client Find(int id)
+            {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM clients WHERE id = (@searchId);";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = id;
+            cmd.Parameters.Add(searchId);
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int ClientId = 0;
+            string ClientName = "";
+            int Stylist_Id = 0;
+
+            while(rdr.Read())
+            {
+                ClientId = rdr.GetInt32(0);
+                ClientName = rdr.GetString(1);
+                Stylist_Id = rdr.GetInt32(2);
+            }
+            Client newClient = new Client(ClientName, Stylist_Id, ClientId);
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+            return newClient;
+            }
 
 
 

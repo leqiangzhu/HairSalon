@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+<div class='container'>
+  <h1>Stylist</h1>
+  <hr/>
+  <ul>
+    @foreach (var client in @Model["client"])
+    {
+      <h4>@client.GetClientName()</h4>
+    }
+  </ul>
+  <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add Item</button></a>
+</div>
