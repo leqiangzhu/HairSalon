@@ -1,7 +1,7 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/Users/ya-tzucheng/.nuget/packages"
+      "C:\\Users\\zhule\\.nuget\\packages"
     ]
   }
 }
