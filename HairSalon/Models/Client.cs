@@ -146,10 +146,6 @@ namespace HairSalon.Models
 
             return newClient;
             }
-
-
-
-
     }
 
 }

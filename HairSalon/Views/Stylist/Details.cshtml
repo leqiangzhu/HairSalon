@@ -1,8 +1,10 @@
 @{
-  Layout = "_Layout";
+  Layout = "_Layout"; 
 }
+@using HairSalon.Models;
+
 <div class='container'>
-  <h1>Stylist</h1>
+  <h1>Stylist!!!</h1>
   <hr/>
   <ul>
     @foreach (var client in @Model["client"])
@@ -10,5 +12,14 @@
       <h4>@client.GetClientName()</h4>
     }
   </ul>
-  <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add Item</button></a>
+  
+    <form action="/stylist/@Model["stylist"].GetStylistId()" method="post">
+       <label for="StylistName">Add a new client to this stylist</label>
+      <input id="StylistName" name="clientName" type="text">
+     
+      <button type="submit">add the new client!</button>
+    </form>>
+
+
+  <!-- <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add a client for this stylist</button></a> -->
 </div>
