@@ -9,7 +9,7 @@
   <ul>
     @foreach (var client in @Model["client"])
     {
-      <h4>@client.GetClientName()</h4>
+      <h4><a href="/Client/@client.GetClientId()">@client.GetClientName()</a></h4>
     }
   </ul>
   
@@ -19,7 +19,8 @@
      
       <button type="submit">add the new client!</button>
     </form>>
-
+      <a href='/'><button class='btn btn-success'>Back Home</button></a>
+        <a href='/stylist'><button class='btn btn-success'>Back stylist</button></a>
 
   <!-- <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add a client for this stylist</button></a> -->
 </div>

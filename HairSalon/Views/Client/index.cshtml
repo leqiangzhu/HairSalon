@@ -9,14 +9,25 @@
 <h1>All the Clients Infomation</h1>
 
 
-<p><a href='/client/new'>Add a New Client<a/></p>
+<p><a href='/client/new'>Add a New Client</a></p>
 <br/>
 
-<h2>Name</h2>
+<h1>Name</h1>
+
+<br/><br/><br/>
+
   @foreach(var client in Model)
   { 
-    <li>@client.GetClientName()</li>
+    <li><a href ='@client.GetClientId()'>@client.GetClientName()</a></li>
   }
 <br/><br/>
+
+<form action="/client/deleteAll" method="post">
+       <!-- <label for="StylistName">Add a new client to this stylist</label>
+      <input id="StylistName" name="clientName" type="text"> -->
+     
+      <button type="submit">deleteAll</button>
+    </form>>
+
 <a href="/">HOME</a>
 </div>
