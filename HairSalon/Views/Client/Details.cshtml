@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+} 
+ 
+ 
+ <h2>client details</h2>
+ @using HairSalon.Models;
+
+ 
+    
+    <div> <h3>Name: @Model.GetClientName()</h3></div>
+    <hr>
+    <a href='/Stylist'><button class='btn btn-warning'>Manger Stylist</button></a>
+    <a href='/Client'><button class='btn btn-info'>Back to  Clients</button></a>
+   
+    <a href='/'><button class='btn btn-success'>Back Home</button></a>
+     
+   

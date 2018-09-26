@@ -2,21 +2,36 @@
   Layout = "_Layout";
 }
 <div class='container'>
-<h1>Hair Salon System</h1>
 
 
 
-<h1>All the Clients Infomation</h1>
+
+<h2>The Clients List</h2>
 
 
-<p><a href='/client/new'>Add a New Client<a/></p>
 <br/>
 
-<h2>Name</h2>
+ 
+
+
+
   @foreach(var client in Model)
   { 
-    <li>@client.GetClientName()</li>
+    <li><a href ='@client.GetClientId()'>@client.GetClientName()</a></li>
   }
+<br/><br/>
 
-<a href="/">HOME</a>
+<form action="/client/deleteAll" method="post">
+       <!-- <label for="StylistName">Add a new client to this stylist</label>
+      <input id="StylistName" name="clientName" type="text"> -->
+     
+     
+    </form>
+<hr>
+<p><a href='/client/new'>Add a New Client</a></p>
+<a href='/Stylist'><button class='btn btn-info'>Manage  Stylists</button></a>
+
+
+<a href="/"><button class='btn btn-success'>HOME</button></a>
+ <!-- <button type="submit">deleteAll</button> -->
 </div>

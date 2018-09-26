@@ -4,21 +4,27 @@
 @using HairSalon.Models;
 
 <div class='container'>
-<h1>new a cl</h1>
 
-<h1>Add a new Client</h1>
-<p><a href='/client'>Back to List<a/></p>
+
+
+<p><a href='/client'>Back to Client List</a></p>
 <hr/>
+<h5>Add a new Client</h5>
 <form action="/client" method="post">
-  <label for="newClient">Add a new client</label>
+  <label for="newClient"></label>
   <input id="newClient" name="clientName" type="text">
-  <select class="form-control" id="stylist" name="stylistId">
-    @foreach(Stylist stylist in Stylist.GetAll())
+ 
+   <br/> <br/>
+  <select class="form-control" id="selectstylist" name="stylistId" style="width: 240px">
+   <p>select a stylist </p>>
+   @foreach(Stylist stylist in Stylist.GetAll())
     {
+      
       <option value="@stylist.GetStylistId()">@stylist.GetStylistName()</option>
     }
 
   </select>
-  <button type="submit">Submit</button>
+  <br/>
+  <button type="submit" class='btn btn-success' >Comfirm</button>
 </form>
 </div>

@@ -53,12 +53,37 @@ namespace HairSalon.Controllers
         }
 
 
+        [HttpPost("/stylist/{stylistId}")]
+        public ActionResult CreateClient(int stylistId)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Stylist selectStylist = Stylist.Find(stylistId);
+            Client newClient= new Client( Request.Form["clientName"],stylistId);
+            newClient.Save();
+            List<Client> stylistClient = selectStylist.GetClients();
+            // model.Add("stylist", selectStylist);
+            // model.Add("client", Request.Form["clientName"]);
+             model.Add("stylist", selectStylist);
+                model.Add("client", stylistClient);
+            return View("Details", model);
+        }
+
         // [HttpPost("/stylist/{stylistId}/newClient")]
         // public ActionResult CreateClient(string clientName, int stylistId)
         // {
         //     new Client(clientName, stylistId).Save();
         //     return View("Details", Stylist.Find(stylistId));
         // }
+
+         [HttpPost("/stylist/deleteAll")]
+        public ActionResult DeleteAll()
+        {
+                     Stylist.DeleteAll();
+    
+                return View("Index");
+              
+        
+        }
 
     }
 

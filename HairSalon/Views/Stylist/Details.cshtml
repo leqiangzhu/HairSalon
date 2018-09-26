@@ -1,14 +1,29 @@
 @{
-  Layout = "_Layout";
+  Layout = "_Layout"; 
 }
+@using HairSalon.Models;
+
 <div class='container'>
-  <h1>Stylist</h1>
+  <h2>All the Clients For Stylist: @Model["stylist"].GetStylistName()</h2>
   <hr/>
   <ul>
     @foreach (var client in @Model["client"])
     {
-      <h4>@client.GetClientName()</h4>
+      <h4><a href="/Client/@client.GetClientId()">@client.GetClientName()</a></h4>
     }
   </ul>
-  <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add Item</button></a>
+  
+    <form action="/stylist/@Model["stylist"].GetStylistId()" method="post">
+       <label for="StylistName">Add a new client to @Model["stylist"].GetStylistName()</label>
+       <br/>
+      <input id="StylistName" name="clientName" type="text">
+     
+      <button type="submit" class='btn btn-success'>Confirm</button>
+    </form>
+    <br/><br/>
+    <a href='/stylist'><button class='btn btn-warning'>Back stylist</button></a>
+    <a href='/'><button class='btn btn-success'>Back Home</button></a>
+       
+
+  <!-- <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add a client for this stylist</button></a> -->
 </div>

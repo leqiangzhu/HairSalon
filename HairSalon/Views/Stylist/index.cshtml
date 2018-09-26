@@ -4,17 +4,29 @@
 @using HairSalon.Models;
 
 <div class='container'>
-  <h1>Hair Salon System</h1>
+ 
 
   <br/>
 
 
-  <h2>Stylists</h2>
+  <h2>The Stylists List</h2>
 
   @foreach (Stylist stylist in @Stylist.GetAll())
   {
-    <li><a href='/stylist/@stylist.GetStylistId()'>@stylist.GetStylistName()</a> </li>
+    <h3><a href='/stylist/@stylist.GetStylistId()'>@stylist.GetStylistName()</a> </h3>
   }
+  <hr>
   <a href='/stylist/new'><button class='btn btn-warning'>Add Stylist</button></a>
+  <a href='/Client'><button class='btn btn-info'>Manage  Clients</button></a>
   <a href='/'><button class='btn btn-success'>Back Home</button></a>
-</div>
+
+</br>
+</br>
+  <form action="/stylist/deleteAll" method="post">
+       <!-- <label for="StylistName">Add a new client to this stylist</label>
+      <input id="StylistName" name="clientName" type="text"> -->
+      <button type="submit" class='btn btn-danger' >DeleteAll</button>
+    </form>
+
+
+

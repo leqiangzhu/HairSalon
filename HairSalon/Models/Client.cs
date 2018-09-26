@@ -119,7 +119,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM clients WHERE id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM clients WHERE client_id = (@searchId);";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
@@ -148,8 +148,19 @@ namespace HairSalon.Models
             }
 
 
-
-
+        public static void DeleteAll()
+        {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"TRUNCATE TABLE clients;";
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+    }
     }
 
 }
