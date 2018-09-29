@@ -1,20 +1,14 @@
 @{
   Layout = "_Layout";
 }
+
+  @using HairSalon.Models;
 <div class='container'>
 
-
-
-
 <h2>The Clients List</h2>
-
+<h4>Number Clients : @Client.GetAllClients().Count</h4>
 
 <br/>
-
- 
-
-
-
   @foreach(var client in Model)
   { 
     <li><a href ='@client.GetClientId()'>@client.GetClientName()</a></li>
@@ -24,13 +18,10 @@
 <form action="/client/deleteAll" method="post">
        <!-- <label for="StylistName">Add a new client to this stylist</label>
       <input id="StylistName" name="clientName" type="text"> -->
-     
-     
     </form>
 <hr>
 <p><a href='/client/new'>Add a New Client</a></p>
 <a href='/Stylist'><button class='btn btn-info'>Manage  Stylists</button></a>
-
 
 <a href="/"><button class='btn btn-success'>HOME</button></a>
  <!-- <button type="submit">deleteAll</button> -->

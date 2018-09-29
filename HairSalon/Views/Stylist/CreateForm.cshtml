@@ -2,15 +2,42 @@
   Layout = "_Layout";
 }
 <div class='container'>
-<h2>Add a new Stylist</h2>
+
 
 <hr/>
-<p><a href='/stylist/'>Back to List</a></p>
+
 <br/>
+<h2>Add a new Stylist</h2>
 <form action="/stylist" method="post">
-  <label for="StylistName">Add a new stylist</label>
+  <label for="StylistName">stylist Name</label>
   <br/>
   <input id="StylistName" name="StylistName" type="text">
+  <br/>
+  <label for="StylistName">phone number</label>
+  <br/>
+  <input id="StylistName" name="StylistPhone" type="text">
+  <br/>
+  <label for="StylistName">email</label>
+  <br/>
+  <input id="StylistName" name="StylistEmail" type="text">
+  <br/>
+  <label for="StylistName">address</label>
+  <br/>
+  <input id="StylistName" name="StylistAddress" type="text">
+  <br/>
+  <label for="StylistName">Hired Date</label>
+  <br/>
+  <input id="StylistName" name="StylistHD" type="date">
+  <br/>
+  <!-- can select many ,who dont belong to syslists-->
+  <label for="StylistName">client</label> 
+  <br/>
+  <input id="StylistName" name="StylistEmail" type="text">
+
+
+  <br/> <br/>
   <button type="submit" class='btn btn-success'> Confirm</button>
 </form>
+<br/>
+<p><a href='/stylist/'><button class='btn btn-info'>Back to List</button></a></p>
 </div>

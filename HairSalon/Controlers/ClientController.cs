@@ -53,7 +53,7 @@ namespace HairSalon.Controllers
                 return View("Index");
         }
 
-
+        //detais
          [HttpGet("/client/{clientId}")]
         public ActionResult Details(int clientId)
         {
@@ -64,6 +64,21 @@ namespace HairSalon.Controllers
           //  model.Add("client", stylistClient);
            // return View("Details");
              return View(selectClient);
+              
+        }
+
+
+        [HttpGet("/client/{clientId}/edit")]
+        public ActionResult Edit(int clientId)
+        {
+           //  Dictionary<string, object> model = new Dictionary<string, object>();
+            Client selectClient = Client.Find(clientId);
+          //  List<Client> stylistClient = selectStylist.GetClients();
+           // model.Add("stylist", selectStylist);
+          //  model.Add("client", stylistClient);
+           // return View("Details");
+             return View(selectClient);
+           
               
         }
 

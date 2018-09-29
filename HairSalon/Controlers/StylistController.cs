@@ -10,10 +10,10 @@ namespace HairSalon.Controllers
 
     
 
-         [HttpGet("Stylist")]
+         [HttpGet("stylist")]
           public ActionResult Index()
           {
-                List<Stylist> allStylist = Stylist.GetAll();;
+                List<Stylist> allStylist = Stylist.GetAll();
                 // Stylist n=new Stylist(stylistName:"JIM");
                 // allStylist.Add(n);
                 
@@ -22,7 +22,7 @@ namespace HairSalon.Controllers
           }
 
 
-        [HttpGet("/Stylist/new")]
+        [HttpGet("/stylist/new")]
         public ActionResult CreateForm()
         {
             List<Stylist> allStylists = Stylist.GetAll();
@@ -83,6 +83,15 @@ namespace HairSalon.Controllers
                 return View("Index");
               
         
+        }
+
+        [HttpPost("/stylist/{stylistId}/delete")]
+        public ActionResult StylistDelete(int stylistId)
+        {
+            
+            Stylist.Delete(stylistId);
+            List<Stylist> allStylist = Stylist.GetAll();
+            return View("Index",allStylist);
         }
 
     }

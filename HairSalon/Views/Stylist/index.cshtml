@@ -10,11 +10,41 @@
 
 
   <h2>The Stylists List</h2>
-
+<table>
+  <tr>
+  <th><p class="tabletitile">stylist name</p></th>
+  <th>stylist phone</th>
+  <th>stylist email</th>
+  <th>client count</th>
+  <th>view</th>
+  </tr>
   @foreach (Stylist stylist in @Stylist.GetAll())
   {
-    <h3><a href='/stylist/@stylist.GetStylistId()'>@stylist.GetStylistName()</a> </h3>
+    <tr>
+    <td>
+    <h6>@stylist.GetStylistName()</h6>
+    </td>
+       <td>
+         423-564-7865
+        </td>
+        <td>
+        
+        </td>
+      <td>
+       <span class="glyphicons glyphicons-user-add"></span>
+      </td>
+      <td>
+        <a href='/stylist/@stylist.GetStylistId()'>view</a>
+    <form action="/stylist/@stylist.GetStylistId()/delete" method="post">
+    <button class='btn btn-danger' type='submit'>Delete</button>
+    </form>
+    
+    
+    </td>
+    </tr>
   }
+</table>
+
   <hr>
   <a href='/stylist/new'><button class='btn btn-warning'>Add Stylist</button></a>
   <a href='/Client'><button class='btn btn-info'>Manage  Clients</button></a>
@@ -29,4 +59,4 @@
     </form>
 
 
-
+</div>

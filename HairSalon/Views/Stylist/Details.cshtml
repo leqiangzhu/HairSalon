@@ -1,29 +1,54 @@
 @{
-  Layout = "_Layout"; 
+Layout = "_Layout"; 
 }
 @using HairSalon.Models;
 
 <div class='container'>
-  <h2>All the Clients For Stylist: @Model["stylist"].GetStylistName()</h2>
-  <hr/>
-  <ul>
-    @foreach (var client in @Model["client"])
-    {
-      <h4><a href="/Client/@client.GetClientId()">@client.GetClientName()</a></h4>
-    }
-  </ul>
-  
-    <form action="/stylist/@Model["stylist"].GetStylistId()" method="post">
-       <label for="StylistName">Add a new client to @Model["stylist"].GetStylistName()</label>
-       <br/>
-      <input id="StylistName" name="clientName" type="text">
-     
-      <button type="submit" class='btn btn-success'>Confirm</button>
-    </form>
-    <br/><br/>
-    <a href='/stylist'><button class='btn btn-warning'>Back stylist</button></a>
-    <a href='/'><button class='btn btn-success'>Back Home</button></a>
-       
+    <h2>THE info of this stylist</h2>
+    name:@Model["stylist"].GetStylistName();
+    <br/>
+    phone:
+    <br/>
 
-  <!-- <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add a client for this stylist</button></a> -->
+<!-- phone:@Model["stylist"].GetStylistName() -->
+
+<h2>All the Clients For Stylist: @Model["stylist"].GetStylistName()</h2>
+<hr/>
+<table>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>phone</th>
+    <th>view</th>
+  </tr>
+
+<ul>
+  
+@foreach (var client in @Model["client"])
+{
+  <tr>
+  <td></td>
+<td>
+<h4><a href="/Client/@client.GetClientId()">@client.GetClientName()</a></h4>
+</td>
+<td></td>
+<td></td>
+</tr>
+}
+
+</ul>
+</table>
+<form action="/stylist/@Model["stylist"].GetStylistId()" method="post">
+<label for="StylistName">Add a new client to @Model["stylist"].GetStylistName()</label>
+<br/>
+<input id="StylistName" name="clientName" type="text">
+
+<button type="submit" class='btn btn-success'>Confirm</button>
+</form>
+<br/><br/>
+<a href='/stylist'><button class='btn btn-warning'>Back stylist</button></a>
+<a href='/'><button class='btn btn-success'>Back Home</button></a>
+
+
+<!-- <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add a client for this stylist</button></a> -->
 </div>
