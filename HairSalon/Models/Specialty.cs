@@ -123,6 +123,38 @@ public static Specialty Find(int id)
 }
 
 
+        public static void DeleteAll()
+        {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"TRUNCATE TABLE specialties;";
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+        }
+
+
+          public static void Delete(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand()as MySqlCommand;
+
+            cmd.CommandText = @"DELETE  FROM specialties  WHERE specialty_id = @id;";
+            cmd.Parameters.Add(new MySqlParameter("@id", id));
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
 
 }
 }

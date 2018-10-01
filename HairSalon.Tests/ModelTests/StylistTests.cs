@@ -17,7 +17,7 @@ namespace HairSalon.Tests
     {
       Stylist.DeleteAll();
     }
-   //skip [TestMethod]
+    [TestMethod]
     public void Stylist_GetAll_DbStartsEmpty_0()
     {
         //Arrange
@@ -28,7 +28,7 @@ namespace HairSalon.Tests
     }
 
 
-   //skip [TestMethod]
+    [TestMethod]
     public void StylistsAreTheSame()
     {
     // Arrange
@@ -38,7 +38,7 @@ namespace HairSalon.Tests
     Assert.AreEqual(firstStylist, secondStylist);
     }
 
-   //skip [TestMethod]
+    [TestMethod]
     public void Stylists_GetAll_count() 
     {
     Stylist firstStylist = new Stylist("David","phone123","david@gmail.com","date");
@@ -56,7 +56,7 @@ namespace HairSalon.Tests
 
 
 
-   //skip  [TestMethod]
+     [TestMethod]
     public void Stylists_Find() 
     {
     Stylist firstStylist = new Stylist("David","phone123","david@gmail.com","date");
@@ -69,7 +69,7 @@ namespace HairSalon.Tests
     Assert.AreEqual(secondStylist, stylistFind);
     }
 
-    //skip  [TestMethod]
+      [TestMethod]
     public void Stylists_Detele() 
     {
     Stylist firstStylist = new Stylist("David","phone123","david@gmail.com","date");
@@ -86,7 +86,7 @@ namespace HairSalon.Tests
       Assert.AreEqual(notFound, NullStylist);
     }
 
-   //skip [TestMethod]
+    [TestMethod]
     public void Stylists_Detele_Seocond_Way() 
     {
     Stylist firstStylist = new Stylist("David","phone123","david@gmail.com","date");

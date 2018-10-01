@@ -217,6 +217,7 @@ namespace HairSalon.Models
             conn.Dispose();
         }
         }
+        
 
           public static void Delete(int id)
         {
