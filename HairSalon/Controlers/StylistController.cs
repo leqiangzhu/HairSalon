@@ -7,39 +7,45 @@ namespace HairSalon.Controllers
 {
     public class StylistController : Controller
     {
-
-    
-
          [HttpGet("stylist")]
           public ActionResult Index()
           {
                 List<Stylist> allStylist = Stylist.GetAll();
-                // Stylist n=new Stylist(stylistName:"JIM");
-                // allStylist.Add(n);
-                
                 return View(allStylist);
-    
           }
-
 
         [HttpGet("/stylist/new")]
         public ActionResult CreateForm()
         {
-            List<Stylist> allStylists = Stylist.GetAll();
-            return View(allStylists);  
-        
+          //  List<Stylist> allStylists = Stylist.GetAll();
+            return View("CreateForm");
         }
 
-         [HttpPost("/stylist")]
+        //  [HttpPost("/stylist")]
+        // public ActionResult Create(string stylistName,string stylistPhone,
+        //                   string stylistEmail,string stylistHD,int stylistId)
+        // {
+        // Stylist newStylist = new Stylist (stylistName,stylistPhone,stylistEmail,
+        //                 stylistHD,stylistId);
+        // newStylist.Save();
+        // List<Stylist> allStylists = Stylist.GetAll();
+        // return RedirectToAction("Index");
+        // //return View("Index", allStylists);
+        // }
+
+        [HttpPost("/stylist")]
         public ActionResult Create()
         {
-        
-        Stylist newStylist = new Stylist (Request.Form["StylistName"],6);
+        Stylist newStylist = new Stylist (Request.Form["stylistName"],Request.Form["stylistPhone"],Request.Form["stylistEmail"],
+                       Request.Form["stylistHD"]);
         newStylist.Save();
         List<Stylist> allStylists = Stylist.GetAll();
-        //return RedirectToAction("Index");
-        return View("Index", allStylists);
+        return RedirectToAction("Index");
+        //return View("Index", allStylists);
         }
+
+
+
 
          [HttpGet("/stylist/{stylistId}")]
         public ActionResult Details(int stylistId)
@@ -80,16 +86,16 @@ namespace HairSalon.Controllers
         public ActionResult DeleteAll()
         {
                      Stylist.DeleteAll();
-    
+
                 return View("Index");
-              
-        
+
+
         }
 
         [HttpPost("/stylist/{stylistId}/delete")]
         public ActionResult StylistDelete(int stylistId)
         {
-            
+
             Stylist.Delete(stylistId);
             List<Stylist> allStylist = Stylist.GetAll();
             return View("Index",allStylist);

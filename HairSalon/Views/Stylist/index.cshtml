@@ -15,7 +15,7 @@
   <th><p class="tabletitile">stylist name</p></th>
   <th>stylist phone</th>
   <th>stylist email</th>
-  <th>client count</th>
+  <th>DATE</th>
   <th>view</th>
   </tr>
   @foreach (Stylist stylist in @Stylist.GetAll())
@@ -25,12 +25,13 @@
     <h6>@stylist.GetStylistName()</h6>
     </td>
        <td>
-         423-564-7865
+         @stylist.GetStylistPhone()
         </td>
         <td>
-        
+        @stylist.GetStylistEmail()
         </td>
       <td>
+         @stylist.GetStylistDate()
        <span class="glyphicons glyphicons-user-add"></span>
       </td>
       <td>

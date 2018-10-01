@@ -4,11 +4,17 @@ Layout = "_Layout";
 @using HairSalon.Models;
 
 <div class='container'>
-    <h2>THE info of this stylist</h2>
-    name:@Model["stylist"].GetStylistName();
+    <h2>The info of this stylist:@Model["stylist"].GetStylistName()</h2>
+    Name:@Model["stylist"].GetStylistName();
     <br/>
-    phone:
+    phone:@Model["stylist"].GetStylistPhone();
     <br/>
+    id:@Model["stylist"].GetStylistId();
+     <br/>
+     DATE:@Model["stylist"].GetStylistDate();
+     <br/>
+     Client NUM:<span style="color:rgb(35, 201, 201)">@Model["client"].Count;</span>
+      <br/>
 
 <!-- phone:@Model["stylist"].GetStylistName() -->
 
@@ -27,12 +33,18 @@ Layout = "_Layout";
 @foreach (var client in @Model["client"])
 {
   <tr>
-  <td></td>
+  <td>
+    @client.GetClientId()
+  </td>
 <td>
-<h4><a href="/Client/@client.GetClientId()">@client.GetClientName()</a></h4>
+<h4>@client.GetClientName()</h4>
 </td>
-<td></td>
-<td></td>
+<td>
+   @client.GetClientPhone()
+</td>
+<td>
+  <a href="/Client/@client.GetClientId()">VIEW</a>
+</td>
 </tr>
 }
 

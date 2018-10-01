@@ -10,7 +10,7 @@
 <p><a href='/client'>Back to Client List</a></p>
 <hr/>
 <h5>Edit the Client Info -@Model.GetClientName()</h5>
-<form action="/client" method="post">
+<form action="/client/{clientId}/edit" method="post">
   <label for="newClient">name</label>
   <br/>
   <input class="newClient" name="clientName" type="text" value=@Model.GetClientName()>
@@ -18,15 +18,11 @@
   <br/>
   <label for="newClient">phone number</label>
   <br/>
-  <input class="newClient" name="clientPhoneNumber" type="text" value="John">
-  <br/>
-  <label for="newClient">phone number</label>
-  <br/>
-  <input class="newClient" name="clientPhone" type="text" value="John">
+  <input class="newClient" name="clientPhoneNumber" type="text" value="phone numer edit">
   <br/>
   <label for="newClient"> Note</label>
   <br/>
-  <input class="newClient" name="clientNote" type="text" style="height:80px">
+  <input class="newClient" name="clientNote" type="text" style="height:80px" value="client note">
  
    <br/> <br/>
   <select class="form-control" class="selectstylist" name="stylistId" style="width: 240px">

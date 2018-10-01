@@ -11,10 +11,11 @@
 <br/>
 <table>
   <tr>
-  <th><p class="tabletitile">client name</p></th>
+     <th>client ID</p></th>
+  <th>client name</p></th>
   <th>client phone</th>
   <th>client email</th>
-  <th>client history</th>
+  <th>client NOTE</th>
   <th>view</th>
   </tr>
 
@@ -22,20 +23,23 @@
   @foreach(var client in Model)
   { <tr>
     <td>
-    <li><a href ='/@client.GetClientId()'>@client.GetClientName()</a></li>
+     2018 @client.GetClientId()
+    </td>
+    <td>
+    <li>@client.GetClientName()</li>
     </td>
     <td>
         @client.GetClientPhone()
     </td>
  
       <td>
-        @client.GetClientNote()
+      
       </td>
       <td>
-
+      @client.GetClientNote()
       </td>
       <td>
-        view
+        <a href ="/client/@client.GetClientId()"><button class='btn btn-primary'>view</button></a>
         <form action="/client/@client.GetClientId()/delete" method="post">
     <button class='btn btn-danger' type='submit'>Delete</button>
     </form>

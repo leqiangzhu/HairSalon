@@ -26,16 +26,14 @@ namespace HairSalon.Controllers
 
         [HttpPost("/Client")]
         public ActionResult Create(string clientName, int stylistId,string clientPhone,
-        string clientNote,int clientId)
+                                    string clientNote,int clientId)
         {
-         List<Stylist> aStylist = Stylist.GetAll();
-        
-        Client newClient = new Client(clientName, stylistId,clientPhone
-          ,clientNote , clientId);
+
+        Client newClient = new Client(clientName, stylistId,
+                                        clientPhone ,clientNote, clientId);
         newClient.Save();
         List<Client> allClients = Client.GetAllClients();
         return RedirectToAction("Index");
-        //return View("Index", allStylists);
         }
 
 
@@ -49,7 +47,7 @@ namespace HairSalon.Controllers
         }
 
 
-        
+
          [HttpPost("/client/deleteAll")]
         public ActionResult DeleteAll()
         {
@@ -64,47 +62,44 @@ namespace HairSalon.Controllers
 
             Client selectClient = Client.Find(clientId);
              return View(selectClient);
-              
+
         }
 
 
         [HttpGet("/client/{clientId}/edit")]
         public ActionResult Edit(int id)
         {
-          Client selectClient = Client.Find(id);
-             return View(selectClient);
-           
-              
+            Client selectClient = Client.Find(id);
+            return View(selectClient);
+
+
         }
 
            [HttpPost("/client/{clientId}/edit")]
-        public ActionResult Edit(int Stylist_Id, string clientName,string clientPhoneNumber,string clientNote,int id)
+        public ActionResult EditClient(int Stylist_Id, string clientName,string clientPhoneNumber,string clientNote,int clientId)
         {
-           
-           Client.Find(id).Edit( Stylist_Id,  clientName, clientPhoneNumber, clientNote);
-         
-           
+           Client selectClient = Client.Find(clientId);
+           selectClient.Edit(clientName, clientPhoneNumber, clientNote,Stylist_Id);
+
              return RedirectToAction("Edit");
-           
-              
         }
 
         // [HttpGet("/client/{clientId}/edit")]
         // public ActionResult Edit(int Stylist_Id, string clientName,string clientPhoneNumber,string clientNote,int id)
         // {
         //   // Client selectClient = Client.Find(id);
-          
+
         //   Client.Edit( Stylist_Id,  clientName, clientPhoneNumber, clientNote, id);
         //      return View("Details");
-           
-              
+
+
         // }
 
 
          [HttpPost("/client/{clientId}/delete")]
         public ActionResult ClientDelete(int clientId)
         {
-            
+
             Client.Delete(clientId);
             List<Client> allClient = Client.GetAllClients();
             return View("Index",allClient);

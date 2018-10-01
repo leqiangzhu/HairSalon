@@ -11,22 +11,31 @@ namespace HairSalon.Models
     {
         private string _stylistName;
         private int _stylistId;
-        private DateTime _stylistDate;
-        public Stylist(string stylistName,int stylistId=0)
+        private string _stylistDate;
+        private string _stylistPhone;
+        private string _stylistEmail;
+        public Stylist(string stylistName,string stylistPhone,
+        string stylistEmail,string stylistDate,int stylistId=0)
         {
             _stylistName = stylistName;
-            _stylistId = stylistId;
+            _stylistPhone=stylistPhone;
+            _stylistEmail=stylistEmail;
+            _stylistDate=stylistDate;
+             _stylistId = stylistId;
         }
 
         public string GetStylistName()
         {
             return _stylistName;
         }
-        // public void SetStylistName(string stylistName)
-        // {
-        //     _stylistName = stylistName;
-        // }
-
+        public string GetStylistEmail()
+        {
+            return _stylistEmail;
+        }
+        public string GetStylistPhone()
+        {
+            return _stylistPhone;
+        }
          public int GetStylistId()
         {
             return _stylistId;
@@ -36,7 +45,7 @@ namespace HairSalon.Models
             _stylistId=stylistId;
         }
 
-          public DateTime GetStylistDate()
+          public string GetStylistDate()
         {
             return _stylistDate;
         }
@@ -51,7 +60,11 @@ namespace HairSalon.Models
                 Stylist newStylist = (Stylist) otherStylist;
                 bool areNamesEqual = this.GetStylistName().Equals(newStylist.GetStylistName());
                 bool areIdsEqual = this.GetStylistId().Equals(newStylist.GetStylistId());
-                return (areNamesEqual && areIdsEqual);
+                bool arePhoneEqual = this.GetStylistPhone().Equals(newStylist.GetStylistPhone());
+                bool areEmailEqual = this.GetStylistEmail().Equals(newStylist.GetStylistEmail());
+                bool areDateEqual = this.GetStylistDate().Equals(newStylist.GetStylistDate());
+                return (areNamesEqual && areIdsEqual &&
+                        arePhoneEqual && areEmailEqual && areDateEqual);
             }
         }
 
@@ -67,17 +80,18 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylists (stylist_name,stylist_phone,stylist_email,stylist_date,
-            ) VALUES (@stylistName,'stylistPhone','stylisEmail',@stylistDate);";
+            cmd.CommandText = @"INSERT INTO stylists (stylist_name,stylist_phone,
+                                stylist_email,stylist_date) 
+                 VALUES (@stylistName,@stylistPhone,@stylisEmail,@stylistDate);";
+           
 
-            MySqlParameter stylistName1 = new MySqlParameter();
-            stylistName1.ParameterName = "@stylistName";
-            stylistName1.Value = this.GetStylistName();
-            cmd.Parameters.Add(stylistName1);
-             cmd.Parameters.Add(new MySqlParameter("@stylistDate", this._stylistDate));
 
-           // cmd.Parameters.Add(new MySqlParameter("@stylistName", _stylistName));
-           // cmd.ExecuteNonQuery();
+            cmd.Parameters.Add(new MySqlParameter("@stylistName", this._stylistName));
+            cmd.Parameters.Add(new MySqlParameter("@stylistPhone", this._stylistPhone));
+            cmd.Parameters.Add(new MySqlParameter("@stylisEmail", this._stylistEmail));
+            cmd.Parameters.Add(new MySqlParameter("@stylistDate", this._stylistDate));
+
+            cmd.ExecuteNonQuery();
             _stylistId = (int)cmd.LastInsertedId;
             conn.Close();
             if (conn != null)
@@ -100,7 +114,12 @@ namespace HairSalon.Models
             {
                 int stylistId = rdr.GetInt32(0);
                 string stylistName = rdr.GetString(1);
-                Stylist newStylist = new Stylist(stylistName, stylistId);
+                string stylistPhone = rdr.GetString(2);
+                string stylistEmail = rdr.GetString(3);
+                string stylistDate=rdr.GetString(4);
+
+                Stylist newStylist = new Stylist(stylistName,stylistPhone,
+                                        stylistEmail ,stylistDate,stylistId);
                 allStylists.Add(newStylist);
             }
             conn.Close();
@@ -111,49 +130,12 @@ namespace HairSalon.Models
             return allStylists;
         }
 
-
-
-    //     public static Item Find(int id)
-    //    {
-    //        MySqlConnection conn = DB.Connection();
-    //        conn.Open();
-
-    //        var cmd = conn.CreateCommand() as MySqlCommand;
-    //        cmd.CommandText = @"SELECT * FROM `items` WHERE id = @thisId;";
-
-    //        MySqlParameter thisId = new MySqlParameter();
-    //        thisId.ParameterName = "@thisId";
-    //        thisId.Value = id;
-    //        cmd.Parameters.Add(thisId);
-
-    //        var rdr = cmd.ExecuteReader() as MySqlDataReader;
-
-    //        int itemId = 0;
-    //        string itemDescription = "";
-
-    //        while (rdr.Read())
-    //        {
-    //            itemId = rdr.GetInt32(0);
-    //            itemDescription = rdr.GetString(1);
-    //        }
-
-    //        Item foundItem= new Item(itemDescription, itemId);  // This line is new!
-
-    //         conn.Close();
-    //         if (conn != null)
-    //         {
-    //             conn.Dispose();
-    //         }
-
-    //        return foundItem;  // This line is new!
-
-    //    }
-
         public static Stylist Find(int id)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
-            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            var cmd = conn.CreateCommand() as MySqlCommand;
+          //  MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT * FROM stylists WHERE stylist_id = @stylistId;";
 
             //cmd.Parameters.Add(new MySqlParameter("@stylistId", id));
@@ -163,14 +145,22 @@ namespace HairSalon.Models
             cmd.Parameters.Add(searchId);
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
-            int stylistId = 0;
-            string stylistName = "";
-            while (rdr.Read())
+
+                int stylistId = 0;
+                string stylistName = "";
+                string stylistPhone = "";
+                string stylistEmail = "";
+                string stylistDate="";
+
+                while (rdr.Read())
             {
-                stylistId = rdr.GetInt32(0);
-                stylistName = rdr.GetString(1);
+                 stylistId = rdr.GetInt32(0);
+                 stylistName = rdr.GetString(1);
+                 stylistPhone = rdr.GetString(2);
+                 stylistEmail = rdr.GetString(3);
+                 stylistDate=rdr.GetString(4);
             }
-            Stylist foundStylist = new Stylist(stylistName, stylistId);
+            Stylist foundStylist = new Stylist(stylistName,stylistPhone, stylistEmail ,stylistDate,stylistId);
 
             conn.Close();
             if (conn != null)
@@ -197,13 +187,9 @@ namespace HairSalon.Models
                 int clientId = rdr.GetInt32(0);
               string clientName = rdr.GetString(1);
               int stylistId=rdr.GetInt32(2);
-              //string clientGender=rdr.GetString(3);
               string clientPhoneNumber=rdr.GetString(3);
-           // string clientEmail=rdr.GetString(5);
-           // string clientAddress=rdr.GetString(6);
-           // string clientCard=rdr.GetString(7);
             string clientNote =rdr.GetString(4);
-       
+
               Client newClient = new Client(clientName, stylistId, clientPhoneNumber,
           clientNote , clientId);
          newClients.Add(newClient);
@@ -240,7 +226,7 @@ namespace HairSalon.Models
 
             cmd.CommandText = @"DELETE  FROM stylists  WHERE stylist_id = @id;";
             cmd.Parameters.Add(new MySqlParameter("@id", id));
-    
+
             cmd.ExecuteNonQuery();
             conn.Close();
             if (conn != null)
