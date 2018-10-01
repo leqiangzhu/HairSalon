@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 01, 2018 at 10:29 PM
+-- Generation Time: Oct 01, 2018 at 10:30 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -11,7 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `hairsalon`
+-- Database: `hairsalon_test`
 --
 
 -- --------------------------------------------------------
@@ -22,25 +22,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clients` (
   `client_id` int(11) NOT NULL,
-  `client_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
-  `stylist_id` int(11) NOT NULL,
+  `client_name` varchar(255) NOT NULL,
   `client_phone` varchar(255) NOT NULL,
-  `client_note` text NOT NULL
+  `client_note` varchar(255) NOT NULL,
+  `stylist_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `clients`
---
-
-INSERT INTO `clients` (`client_id`, `client_name`, `stylist_id`, `client_phone`, `client_note`) VALUES
-(1, 'Abbey', 1, '7654301147', 'note'),
-(2, 'Daisy', 1, '345-4873-3457', 'no'),
-(3, 'Helen', 2, '42588833455', 'note'),
-(4, 'Macy', 2, '347-4564-434', 'note'),
-(5, 'Debbie', 4, '208-4985-345', 'note'),
-(6, 'Angela', 4, '563-2345-2829', 'yes'),
-(7, 'Chris', 3, '783-3454-3243', 'chris@gmail.com'),
-(8, 'TEST_CLIENT', 7, '111-111-1111', 'NOTE');
 
 -- --------------------------------------------------------
 
@@ -52,14 +38,6 @@ CREATE TABLE `specialties` (
   `specialty_id` int(11) NOT NULL,
   `specialty_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `specialties`
---
-
-INSERT INTO `specialties` (`specialty_id`, `specialty_name`) VALUES
-(1, 'Color'),
-(2, 'Cutting');
 
 -- --------------------------------------------------------
 
@@ -74,18 +52,6 @@ CREATE TABLE `stylists` (
   `stylist_email` varchar(255) NOT NULL,
   `stylist_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `stylists`
---
-
-INSERT INTO `stylists` (`stylist_id`, `stylist_name`, `stylist_phone`, `stylist_email`, `stylist_date`) VALUES
-(1, 'Aaron', '3549871234', 'Aaron@gmail.com', '1'),
-(2, 'David', '3435234', 'davidzhu@gmail.com', '2'),
-(3, 'Larson', '6738888334', 'Larson.sm@yahoo.com', '3'),
-(4, 'Randy', '3455', 'randy.seattle@msn.com', 'E'),
-(6, 'Angela', '42538389897', 'zhu@email', 'date'),
-(7, 'TEST', '111-111-1111', 'zhu@gmail.com', 'DA');
 
 --
 -- Indexes for dumped tables
@@ -117,14 +83,14 @@ ALTER TABLE `stylists`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `specialties`
 --
 ALTER TABLE `specialties`
-  MODIFY `specialty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `specialty_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `stylist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `stylist_id` int(11) NOT NULL AUTO_INCREMENT;

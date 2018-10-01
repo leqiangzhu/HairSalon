@@ -71,7 +71,6 @@ namespace HairSalon.Controllers
         {
             Client selectClient = Client.Find(clientId);
             return View(selectClient);
-
         }
 
          [HttpGet("/Test")]
@@ -79,7 +78,6 @@ namespace HairSalon.Controllers
         {
             Client selectClient = Client.Find(3);
             return View(selectClient);
-
         }
 
 
@@ -89,7 +87,7 @@ namespace HairSalon.Controllers
         public ActionResult EditClient(int Stylist_Id, string clientName,string clientPhoneNumber,string clientNote,int clientId)
         {
            Client selectClient =  Client.Find(clientId);
-           selectClient.Edit();
+           selectClient.Edit(clientId);
            return RedirectToAction("Details",selectClient);
         }
 
