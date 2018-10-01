@@ -81,9 +81,9 @@ namespace HairSalon.Models
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"INSERT INTO stylists (stylist_name,stylist_phone,
-                                stylist_email,stylist_date) 
+                                stylist_email,stylist_date)
                  VALUES (@stylistName,@stylistPhone,@stylisEmail,@stylistDate);";
-           
+
 
 
             cmd.Parameters.Add(new MySqlParameter("@stylistName", this._stylistName));
