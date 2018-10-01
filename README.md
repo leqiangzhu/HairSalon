@@ -6,7 +6,7 @@
 
 ## Description
 
-An application allows user 
+An application allows user to manage the stylist ,client in the hairsalon system
 
 ### Specs
 
