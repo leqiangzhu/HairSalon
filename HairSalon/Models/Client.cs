@@ -198,7 +198,7 @@ public class Client
     }
 
 
-    public  void Edit(string clientName,string clientPhoneNumber,string clientNote,int Stylist_Id )
+    public  void Edit(int id)
 {
     MySqlConnection conn = DB.Connection();
     conn.Open();
@@ -206,14 +206,11 @@ public class Client
         cmd.CommandText = @"UPDATE  clients SET (client_name, stylist_id,client_phone,client_note)
                         VALUES (@clientName, @stylistId,@clientPhone,@clientNote) WHERE client_id = @Id;";
 
-                cmd.Parameters.Add(new MySqlParameter("@clientName", clientName));
-                cmd.Parameters.Add(new MySqlParameter("@stylistId", Stylist_Id));
-                cmd.Parameters.Add(new MySqlParameter("@clientPhone", clientPhoneNumber));
-                // cmd.Parameters.Add(new MySqlParameter("@clientEmail", this._clientEmail));
-                //cmd.Parameters.Add(new MySqlParameter("@clientAddress", this._clientAddress));
-                //cmd.Parameters.Add(new MySqlParameter("@clientCard", this._clientCard));
-                cmd.Parameters.Add(new MySqlParameter("@clientNote", clientNote));
-                cmd.Parameters.Add(new MySqlParameter("@Id", this._clientId));
+                cmd.Parameters.Add(new MySqlParameter("@clientName", this._clientName));
+                cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
+                cmd.Parameters.Add(new MySqlParameter("@clientPhone", this._clientPhoneNumber));
+                cmd.Parameters.Add(new MySqlParameter("@clientNote", this._clientNote));
+                cmd.Parameters.Add(new MySqlParameter("@Id", id));
                 cmd.ExecuteNonQuery();
         conn.Close();
         if (conn != null)

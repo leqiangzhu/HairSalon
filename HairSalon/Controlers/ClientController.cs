@@ -67,21 +67,31 @@ namespace HairSalon.Controllers
 
 
         [HttpGet("/client/{clientId}/edit")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int clientId)
         {
-            Client selectClient = Client.Find(id);
+            Client selectClient = Client.Find(clientId);
             return View(selectClient);
 
+        }
+
+         [HttpGet("/Test")]
+        public ActionResult Test()
+        {
+            Client selectClient = Client.Find(3);
+            return View(selectClient);
 
         }
+
+
+
 
            [HttpPost("/client/{clientId}/edit")]
         public ActionResult EditClient(int Stylist_Id, string clientName,string clientPhoneNumber,string clientNote,int clientId)
         {
            Client selectClient = Client.Find(clientId);
-           selectClient.Edit(clientName, clientPhoneNumber, clientNote,Stylist_Id);
+           selectClient.Edit(clientId);
 
-             return RedirectToAction("Edit");
+             return RedirectToAction("Details");
         }
 
         // [HttpGet("/client/{clientId}/edit")]
