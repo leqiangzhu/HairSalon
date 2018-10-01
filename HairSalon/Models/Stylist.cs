@@ -11,7 +11,8 @@ namespace HairSalon.Models
     {
         private string _stylistName;
         private int _stylistId;
-        public Stylist(string stylistName, int stylistId=0)
+        private DateTime _stylistDate;
+        public Stylist(string stylistName,int stylistId=0)
         {
             _stylistName = stylistName;
             _stylistId = stylistId;
@@ -35,7 +36,10 @@ namespace HairSalon.Models
             _stylistId=stylistId;
         }
 
-
+          public DateTime GetStylistDate()
+        {
+            return _stylistDate;
+        }
           public override bool Equals(System.Object otherStylist)
         {
             if(!(otherStylist is Stylist))
@@ -63,15 +67,17 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylists (stylist_name) VALUES (@stylistName);";
+            cmd.CommandText = @"INSERT INTO stylists (stylist_name,stylist_phone,stylist_email,stylist_date,
+            ) VALUES (@stylistName,'stylistPhone','stylisEmail',@stylistDate);";
 
             MySqlParameter stylistName1 = new MySqlParameter();
             stylistName1.ParameterName = "@stylistName";
             stylistName1.Value = this.GetStylistName();
             cmd.Parameters.Add(stylistName1);
+             cmd.Parameters.Add(new MySqlParameter("@stylistDate", this._stylistDate));
 
            // cmd.Parameters.Add(new MySqlParameter("@stylistName", _stylistName));
-            cmd.ExecuteNonQuery();
+           // cmd.ExecuteNonQuery();
             _stylistId = (int)cmd.LastInsertedId;
             conn.Close();
             if (conn != null)
@@ -191,15 +197,15 @@ namespace HairSalon.Models
                 int clientId = rdr.GetInt32(0);
               string clientName = rdr.GetString(1);
               int stylistId=rdr.GetInt32(2);
-              string clientGender=rdr.GetString(3);
-              string clientPhoneNumber=rdr.GetString(4);
-            string clientEmail=rdr.GetString(5);
-            string clientAddress=rdr.GetString(6);
-            string clientCard=rdr.GetString(7);
-            string clientNote =rdr.GetString(8);
+              //string clientGender=rdr.GetString(3);
+              string clientPhoneNumber=rdr.GetString(3);
+           // string clientEmail=rdr.GetString(5);
+           // string clientAddress=rdr.GetString(6);
+           // string clientCard=rdr.GetString(7);
+            string clientNote =rdr.GetString(4);
        
-              Client newClient = new Client(clientName, stylistId, clientGender, clientPhoneNumber,
-         clientEmail, clientAddress, clientCard, clientNote , clientId);
+              Client newClient = new Client(clientName, stylistId, clientPhoneNumber,
+          clientNote , clientId);
          newClients.Add(newClient);
             }
 

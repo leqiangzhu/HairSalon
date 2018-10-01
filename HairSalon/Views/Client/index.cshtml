@@ -9,10 +9,40 @@
 <h4>Number Clients : @Client.GetAllClients().Count</h4>
 
 <br/>
+<table>
+  <tr>
+  <th><p class="tabletitile">client name</p></th>
+  <th>client phone</th>
+  <th>client email</th>
+  <th>client history</th>
+  <th>view</th>
+  </tr>
+
+
   @foreach(var client in Model)
-  { 
-    <li><a href ='@client.GetClientId()'>@client.GetClientName()</a></li>
+  { <tr>
+    <td>
+    <li><a href ='/@client.GetClientId()'>@client.GetClientName()</a></li>
+    </td>
+    <td>
+        @client.GetClientPhone()
+    </td>
+ 
+      <td>
+        @client.GetClientNote()
+      </td>
+      <td>
+
+      </td>
+      <td>
+        view
+        <form action="/client/@client.GetClientId()/delete" method="post">
+    <button class='btn btn-danger' type='submit'>Delete</button>
+    </form>
+      </td>
+    </tr>
   }
+  </table>
 <br/><br/>
 
 <form action="/client/deleteAll" method="post">

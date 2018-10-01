@@ -9,20 +9,20 @@
 
 <p><a href='/client'>Back to Client List</a></p>
 <hr/>
-<h5>Add a new Client</h5>
+<h5>Edit the Client Info @Model.GetClientName()</h5>
 <form action="/client" method="post">
   <label for="newClient">name</label>
   <br/>
-  <input class="newClient" name="clientName" type="text" >
+  <input class="newClient" name="clientName" type="text" value=@Model.GetClientName()>
  
   <br/>
   <label for="newClient">phone number</label>
   <br/>
-  <input class="newClient" name="clientPhoneNumber" type="text"  >
+  <input class="newClient" name="clientPhoneNumber" type="text" value="John">
   <br/>
   <label for="newClient">phone number</label>
   <br/>
-  <input class="newClient" name="clientPhone" type="text"  >
+  <input class="newClient" name="clientPhone" type="text" value="John">
   <br/>
   <label for="newClient"> Note</label>
   <br/>
