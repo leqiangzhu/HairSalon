@@ -121,7 +121,7 @@ public class Client
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
         cmd.CommandText = @"SELECT * FROM clients;";
-       
+
         MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
         while(rdr.Read())
         {
@@ -197,28 +197,74 @@ public class Client
     }
     }
 
+     public void Edit()
+        {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
 
-    public  void Edit(int id)
-{
-    MySqlConnection conn = DB.Connection();
-    conn.Open();
-        var cmd = conn.CreateCommand()as MySqlCommand;
+        var cmd = conn.CreateCommand() as MySqlCommand;
         cmd.CommandText = @"UPDATE  clients SET (client_name, stylist_id,client_phone,client_note)
-                        VALUES (@clientName, @stylistId,@clientPhone,@clientNote) WHERE client_id = @Id;";
+                     VALUES (@clientName, @stylistId,@clientPhone,@clientNote) WHERE client_id = @Id;";
 
                 cmd.Parameters.Add(new MySqlParameter("@clientName", this._clientName));
                 cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
                 cmd.Parameters.Add(new MySqlParameter("@clientPhone", this._clientPhoneNumber));
                 cmd.Parameters.Add(new MySqlParameter("@clientNote", this._clientNote));
-                cmd.Parameters.Add(new MySqlParameter("@Id", id));
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.Add(new MySqlParameter("@Id", this._clientId));
+                
+
+        cmd.ExecuteNonQuery();
+  
         conn.Close();
         if (conn != null)
         {
             conn.Dispose();
         }
-
         }
+
+
+
+        // public static Client Edit()
+        // {
+        // MySqlConnection conn = DB.Connection();
+        // conn.Open();
+        // var cmd = conn.CreateCommand() as MySqlCommand;
+        // cmd.CommandText = @"UPDATE  clients SET (client_name, stylist_id,client_phone,client_note)
+        //                 VALUES (@clientName, @stylistId,@clientPhone,@clientNote) WHERE client_id = @Id;";
+
+        // var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+        // int clientId = this.GetClientId();
+        // string clientName = "@clientName";
+        // int Stylist_Id = @stylistId;
+        // string clientPhoneNumber="@clientPhone";
+        // string clientNote ="@clientNote";
+
+        // while(rdr.Read())
+        // {
+        //     clientId = rdr.GetInt32(0);
+        //     clientName = rdr.GetString(1);
+        //     Stylist_Id = rdr.GetInt32(2);
+        //     clientPhoneNumber=rdr.GetString(3);
+        //     clientNote =rdr.GetString(4);
+        // }
+        // Client newClient =  new Client(clientName, Stylist_Id, clientPhoneNumber,
+        // clientNote , clientId);
+               
+        // cmd.ExecuteNonQuery();
+
+        // conn.Close();
+        // if (conn != null)
+        // {
+        //     conn.Dispose();
+        // }
+
+        // return newClient;
+        // }
+
+
+
+
 
             public static void Delete(int id)
     {

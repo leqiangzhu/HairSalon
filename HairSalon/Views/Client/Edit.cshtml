@@ -9,11 +9,11 @@
 <hr/>
 <h5>Edit the Client Info : @Model.GetClientName()</h5>
 
-<form action="/client/{clientId}/edit" method="post">
+<form action="/client/{clientId}" method="post">
   <label for="newClient">name</label>
   <br/>
   <input class="newClient" name="clientName" type="text" value= "@Model.GetClientName()">
- 
+
   <br/>
   <label for="newClient">phone number</label>
   <br/>
@@ -22,13 +22,13 @@
   <label for="newClient"> Note</label>
   <br/>
   <input class="newClient" name="clientNote" type="text" style="height:80px" value="@Model.GetClientNote()">
- 
+
    <br/> <br/>
   <select class="form-control" class="selectstylist" name="stylistId" style="width: 240px">
    <p>select a stylist </p>>
    @foreach(Stylist stylist in Stylist.GetAll())
     {
-      
+
       <option value="@stylist.GetStylistId()">@stylist.GetStylistName()</option>
     }
 

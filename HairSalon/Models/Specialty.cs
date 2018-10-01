@@ -24,7 +24,7 @@ public class Specialty
     return _specialtyName;
   }
 
-  public int GetSpecialtyId
+  public int GetSpecialtyId()
   {
     return _specialtyId;
   }
