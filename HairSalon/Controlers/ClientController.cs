@@ -84,7 +84,8 @@ namespace HairSalon.Controllers
 
 
            [HttpPost("/client/{clientId}")]
-        public ActionResult EditClient(int Stylist_Id, string clientName,string clientPhoneNumber,string clientNote,int clientId)
+        public ActionResult EditClient(int Stylist_Id, string clientName,
+                    string clientPhoneNumber,string clientNote,int clientId)
         {
            Client selectClient =  Client.Find(clientId);
            selectClient.Edit(clientId);

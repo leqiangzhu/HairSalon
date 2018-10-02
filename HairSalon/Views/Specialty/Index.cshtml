@@ -1,0 +1,55 @@
+@{
+  Layout = "_Layout";
+}
+
+  @using HairSalon.Models;
+<div class='container'>
+
+<h2>The Specialty List</h2>
+<h4>Number Specialty : @Specialty.GetAll().Count</h4>
+
+<br/>
+<table>
+  <tr>
+    <th>Specialty ID</p></th>
+  <th>Specialty name</p></th>
+  <th>Order number</th>
+ 
+  <th> NOTE</th>
+  <th>VIEW</th>
+  </tr>
+
+
+  @foreach(var specialty in Model)
+  { <tr>
+    <td>
+      @specialty.GetSpecialtyId()
+    </td>
+    <td>
+    <li>@specialty.GetSpecialtyName()</li>
+    </td>
+    <td>
+    </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+  }
+  </table>
+<br/>
+<form action="/Specialty" method="post">
+  <label for="newSpecialty">Add a new Specialty</label>
+  <br/>
+  <input class="newSpecialty" name="SpecialtyName" type="text" >
+   <br/> 
+  <br/>
+  <button type="submit" class='btn btn-success' >Comfirm</button>
+</form>
+
+<hr>
+<a href='/client'><button class='btn btn-info'>VIEW Client</button></a>
+<a href='/Stylist'><button class='btn btn-warning'>VIEW Stylists</button></a>
+<a href="/"><button class='btn btn-success'>HOME</button></a>
+ <!-- <button type="submit">deleteAll</button> -->
+</div>

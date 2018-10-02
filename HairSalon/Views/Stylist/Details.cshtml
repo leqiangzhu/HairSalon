@@ -4,7 +4,7 @@ Layout = "_Layout";
 @using HairSalon.Models;
 
 <div class='container'>
-    <h2>The info of this stylist:@Model["stylist"].GetStylistName()</h2>
+    <h2>The info of stylist:@Model["stylist"].GetStylistName()</h2>
     Name:@Model["stylist"].GetStylistName();
     <br/>
     phone:@Model["stylist"].GetStylistPhone();
@@ -19,13 +19,14 @@ Layout = "_Layout";
 <!-- phone:@Model["stylist"].GetStylistName() -->
 
 <h2>All the Clients For Stylist: @Model["stylist"].GetStylistName()</h2>
-<hr/>
+
 <table>
   <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>phone</th>
-    <th>view</th>
+    <th>ID</th>
+    <th>Client name</th>
+    <th>Client phone</th>
+     <th>specialty</th>
+    <th>VIEW</th>
   </tr>
 
 <ul>
@@ -43,6 +44,9 @@ Layout = "_Layout";
    @client.GetClientPhone()
 </td>
 <td>
+   specialty
+</td>
+<td>
   <a href="/Client/@client.GetClientId()">VIEW</a>
 </td>
 </tr>
@@ -54,10 +58,23 @@ Layout = "_Layout";
 <label for="StylistName">Add a new client to @Model["stylist"].GetStylistName()</label>
 <br/>
 <input id="StylistName" name="clientName" type="text">
-
+<br/>
 <button type="submit" class='btn btn-success'>Confirm</button>
 </form>
-<br/><br/>
+
+<form action="/stylist/@Model["stylist"].GetStylistId()" method="post">
+<label for="specialtyName">Add a new client to @Model["stylist"].GetStylistName()</label>
+<br/>
+<select class="form-control" class="selectstylist" name="specialtyId" style="width: 240px">
+   <p>select a stylist </p>>
+   @foreach(Specialty specialty in Specialty.GetAll())
+    {
+      <option value="@specialty.GetSpecialtyId()">@specialty.GetSpecialtyName()</option>
+    }
+  </select>
+<button type="submit" class='btn btn-success'>Confirm</button>
+</form>
+<hr/>
 <a href='/stylist'><button class='btn btn-warning'>Back stylist</button></a>
 <a href='/'><button class='btn btn-success'>Back Home</button></a>
 
