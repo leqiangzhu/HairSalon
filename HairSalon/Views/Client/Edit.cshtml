@@ -9,7 +9,7 @@
 <hr/>
 <h5>Edit the Client Info : @Model.GetClientName()</h5>
 
-<form action="/client/{clientId}" method="post">
+<form action="/client/@Model.GetClientId()/edit" method="post">
   <label for="newClient">name</label>
   <br/>
   <input class="newClient" name="clientName" type="text" value= "@Model.GetClientName()">

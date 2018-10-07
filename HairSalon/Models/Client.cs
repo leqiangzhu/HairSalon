@@ -11,7 +11,7 @@ public class Client
 {
     private string _clientName;
     private int _clientId;
-    private int _stylistId;
+    //private int _stylistId;
     private string _clientPhoneNumber;
        // private string _clientGender;
    // private string _clientEmail;
@@ -19,11 +19,10 @@ public class Client
     private string _clientNote;
    // private string _clientCard;
 
-    public Client(string clientName,int stylistId,
-    string clientPhoneNumber,string clientNote ,int clientId=0)
+    public Client(string clientName,string clientPhoneNumber,string clientNote ,int clientId=0)
     {
         _clientName = clientName;
-        _stylistId = stylistId;
+        //_stylistId = stylistId;
         _clientPhoneNumber=clientPhoneNumber;
         _clientId = clientId;
         _clientNote=clientNote;
@@ -40,10 +39,10 @@ public class Client
         return _clientId;
     }
 
-    public int GetStylistId()
-    {
-        return _stylistId;
-    }
+    // public int GetStylistId()
+    // {
+    //     return _stylistId;
+    // }
         public string GetClientPhone()
     {
         return _clientPhoneNumber;
@@ -97,14 +96,14 @@ public class Client
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"INSERT INTO clients (client_name, stylist_id,client_phone,
+        cmd.CommandText = @"INSERT INTO clients (client_name,client_phone,
                             client_note)
-                        VALUES (@clientName, @stylistId,@clientPhone,@clientNote);";
+                        VALUES (@clientName,@clientPhone,@clientNote);";
 
                 cmd.Parameters.Add(new MySqlParameter("@clientName", this._clientName));
                 cmd.Parameters.Add(new MySqlParameter("@clientPhone", this._clientPhoneNumber));
                 cmd.Parameters.Add(new MySqlParameter("@clientNote", this._clientNote));
-                cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
+                // cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
 
         cmd.ExecuteNonQuery();
         _clientId = (int) cmd.LastInsertedId;
@@ -127,11 +126,11 @@ public class Client
         {
             int clientId = rdr.GetInt32(0);
             string clientName = rdr.GetString(1);
-            int Stylist_Id = rdr.GetInt32(2);
-            string  clientPhoneNumber=rdr.GetString(3);
-            string clientNote =rdr.GetString(4);
+            //int Stylist_Id = rdr.GetInt32(2);
+            string  clientPhoneNumber=rdr.GetString(2);
+            string clientNote =rdr.GetString(3);
 
-            Client newClient = new Client(clientName, Stylist_Id, clientPhoneNumber,
+            Client newClient = new Client(clientName, clientPhoneNumber,
         clientNote , clientId);
             allClients.Add(newClient);
         }
@@ -159,7 +158,7 @@ public class Client
 
         int clientId = 0;
         string clientName = "";
-        int Stylist_Id = 0;
+       
         string clientPhoneNumber="";
         string clientNote ="";
 
@@ -167,11 +166,11 @@ public class Client
         {
             clientId = rdr.GetInt32(0);
             clientName = rdr.GetString(1);
-            Stylist_Id = rdr.GetInt32(2);
-            clientPhoneNumber=rdr.GetString(3);
-            clientNote =rdr.GetString(4);
+         //   Stylist_Id = rdr.GetInt32(2);
+            clientPhoneNumber=rdr.GetString(2);
+            clientNote =rdr.GetString(3);
         }
-        Client newClient =  new Client(clientName, Stylist_Id, clientPhoneNumber,
+        Client newClient =  new Client(clientName, clientPhoneNumber,
         clientNote , clientId);
         conn.Close();
         if (conn != null)
@@ -204,16 +203,16 @@ public class Client
 
         var cmd = conn.CreateCommand() as MySqlCommand;
         cmd.CommandText = @"UPDATE clients SET client_name = @clientName,client_phone = @clientPhone,
-                     client_note = @clientNote, stylist_id = @stylistId WHERE client_id = @id;";
+                     client_note = @clientNote, WHERE client_id = @id;";
 
                 cmd.Parameters.Add(new MySqlParameter("@clientName", this._clientName));
-                cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
+                //cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
                 cmd.Parameters.Add(new MySqlParameter("@clientPhone", this._clientPhoneNumber));
                 cmd.Parameters.Add(new MySqlParameter("@clientNote", this._clientNote));
                 cmd.Parameters.Add(new MySqlParameter("@id", id));
 
         cmd.ExecuteNonQuery();
-        
+        _clientId = (int) cmd.LastInsertedId;
         conn.Close();
         if (conn != null)
         {
@@ -261,7 +260,7 @@ public class Client
         // return newClient;
         // }
 
-
+        
 
 
 

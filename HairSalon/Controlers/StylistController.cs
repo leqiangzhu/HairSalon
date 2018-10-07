@@ -50,30 +50,44 @@ namespace HairSalon.Controllers
          [HttpGet("/stylist/{stylistId}")]
         public ActionResult Details(int stylistId)
         {
-            Dictionary<string, object> model = new Dictionary<string, object>();
-            Stylist selectStylist = Stylist.Find(stylistId);
-             List<Specialty> allSpecialties = Specialty.GetAll();
-            List<Client> stylistClient = selectStylist.GetClients();
-            model.Add("stylist", selectStylist);
-            model.Add("client", stylistClient);
-            return View(model);
+                Stylist selectStylist = Stylist.Find(stylistId);
+                List<Client> stylistClient = selectStylist.GetClients(); 
+
+
+            
+            
+            // Dictionary<string, object> model = new Dictionary<string, object>();
+            // Stylist selectStylist = Stylist.Find(stylistId);
+            // List<Specialty> allSpecialties = Specialty.GetAll();
+            // List<Client> stylistClient = selectStylist.GetClients();
+            // model.Add("stylist", selectStylist);
+            // model.Add("client", stylistClient);
+            return View(selectStylist);
         }
 
-
+        //add a client to the stylist ,
         [HttpPost("/stylist/{stylistId}")]
-        public ActionResult CreateClient(int stylistId)
+        public ActionResult AddClient(int stylistId,int clientId)
         {
-            Dictionary<string, object> model = new Dictionary<string, object>();
-            Stylist selectStylist = Stylist.Find(stylistId);
-            Client newClient= new Client( Request.Form["clientName"],stylistId
-            ,Request.Form["clientPhone"],Request.Form["clientNote"]);
-            newClient.Save();
-            List<Client> stylistClient = selectStylist.GetClients();
-            // model.Add("stylist", selectStylist);
-            // model.Add("client", Request.Form["clientName"]);
-             model.Add("stylist", selectStylist);
-                model.Add("client", stylistClient);
-            return View("Details", model);
+                Stylist selectStylist = Stylist.Find(stylistId);
+                List<Client> stylistClient = selectStylist.GetClients(); 
+                Client selectClient = Client.Find( clientId);
+                selectStylist.AddClient(selectClient);
+            
+
+
+
+            // Dictionary<string, object> model = new Dictionary<string, object>();
+            // Stylist selectStylist = Stylist.Find(stylistId);
+            // Client newClient= new Client( Request.Form["clientName"]
+            // ,Request.Form["clientPhone"],Request.Form["clientNote"]);
+            // newClient.Save();
+            // List<Client> stylistClient = selectStylist.GetClients();
+            // // model.Add("stylist", selectStylist);
+            // // model.Add("client", Request.Form["clientName"]);
+            //  model.Add("stylist", selectStylist);
+            //  model.Add("client", stylistClient);
+            return View("Details", selectStylist);
         }
 
         // [HttpPost("/stylist/{stylistId}/newClient")]

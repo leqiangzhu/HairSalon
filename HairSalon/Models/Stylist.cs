@@ -171,28 +171,63 @@ namespace HairSalon.Models
             return foundStylist;
         }
 
+
+        //add client to the stylist
+        public void AddClient(Client newClient )
+        {
+             MySqlConnection conn = DB.Connection();
+             conn.Open();
+             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+             cmd.CommandText= @"INSERT INTO stylist_clients (stylist_id, client_id) 
+                                                        VALUES (@stylistId, @clientId);";
+
+
+              cmd.Parameters.Add(new MySqlParameter("@stylistId", _stylistId));
+              cmd.Parameters.Add(new MySqlParameter("@clientId", newClient.GetClientId()));
+
+              cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+        
+        
+        
+        
         public List<Client> GetClients()
         {
             List<Client> newClients = new List<Client> {};
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM clients WHERE stylist_id = @stylistId;";
 
-            cmd.Parameters.Add(new MySqlParameter("@stylistId", _stylistId));
+            cmd.CommandText =  @"SELECT clients.* FROM stylists
+                            JOIN stylist_clients ON (stylists.stylist_id = stylist_clients.stylist_id)
+                            JOIN clients ON (stylist_clients.client_id = clients.client_id)
+                            WHERE stylists.stylist_id = @stylistId;";
+
+            cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
+                int clientId = 0;
+                string clientName="";
+                string clientPhoneNumber="";
+                string  clientNote=""; 
+              
             while (rdr.Read())
             {
-                int clientId = rdr.GetInt32(0);
-              string clientName = rdr.GetString(1);
-              int stylistId=rdr.GetInt32(2);
-              string clientPhoneNumber=rdr.GetString(3);
-            string clientNote =rdr.GetString(4);
-
-              Client newClient = new Client(clientName, stylistId, clientPhoneNumber,
+                 clientId = rdr.GetInt32(0);
+                 clientName=rdr.GetString(1);
+                 clientPhoneNumber=rdr.GetString(2);
+                 clientNote=rdr.GetString(3); 
+              
+             
+              Client newClient = new Client(clientName, clientPhoneNumber,
           clientNote , clientId);
-         newClients.Add(newClient);
+            newClients.Add(newClient);
             }
 
             conn.Close();

@@ -4,21 +4,21 @@ Layout = "_Layout";
 @using HairSalon.Models;
 
 <div class='container'>
-    <h2>The info of stylist:@Model["stylist"].GetStylistName()</h2>
-    Name:@Model["stylist"].GetStylistName();
+    <h2>The info of stylist:@Model.GetStylistName()</h2>
+    Name:@Model.GetStylistName();
     <br/>
-    phone:@Model["stylist"].GetStylistPhone();
+    phone:@Model.GetStylistPhone();
     <br/>
-    id:@Model["stylist"].GetStylistId();
+    id:@Model.GetStylistId();
      <br/>
-     DATE:@Model["stylist"].GetStylistDate();
+     DATE:@Model.GetStylistDate();
      <br/>
-     Client NUM:<span style="color:rgb(35, 201, 201)">@Model["client"].Count;</span>
+     Client NUM:<span style="color:rgb(35, 201, 201)">@Model.GetClients().Count;</span>
       <br/>
 
-<!-- phone:@Model["stylist"].GetStylistName() -->
 
-<h2>All the Clients For Stylist: @Model["stylist"].GetStylistName()</h2>
+
+<h2>All the Clients For Stylist: @Model.GetStylistName()</h2>
 
 <table>
   <tr>
@@ -31,7 +31,7 @@ Layout = "_Layout";
 
 <ul>
   
-@foreach (var client in @Model["client"])
+@foreach (Client client in @Model.GetClients())
 {
   <tr>
   <td>
@@ -54,16 +54,16 @@ Layout = "_Layout";
 
 </ul>
 </table>
-<form action="/stylist/@Model["stylist"].GetStylistId()" method="post">
-<label for="StylistName">Add a new client to @Model["stylist"].GetStylistName()</label>
+<form action="/stylist/@Model.GetStylistId()" method="post">
+<label for="StylistName">Add a new client to @Model.GetStylistName()</label>
 <br/>
-<input id="StylistName" name="clientName" type="text">
+<input id="client_Name" name="clientId" type="text">
 <br/>
 <button type="submit" class='btn btn-success'>Confirm</button>
 </form>
 
-<form action="/stylist/@Model["stylist"].GetStylistId()" method="post">
-<label for="specialtyName">Add a new client to @Model["stylist"].GetStylistName()</label>
+<form action="/stylist/@Model.GetStylistId()" method="post">
+<label for="specialtyName">Add a new client to @Model.GetStylistName()</label>
 <br/>
 <select class="form-control" class="selectstylist" name="specialtyId" style="width: 240px">
    <p>select a stylist </p>>
@@ -79,5 +79,5 @@ Layout = "_Layout";
 <a href='/'><button class='btn btn-success'>Back Home</button></a>
 
 
-<!-- <a href='/stylists/@Model["stylist"].GetStylistId()/client/new'><button class='btn btn-danger'>Add a client for this stylist</button></a> -->
+
 </div>

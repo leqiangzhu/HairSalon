@@ -28,6 +28,16 @@ namespace HairSalon.Controllers
         }
 
 
+        [HttpPost("/Specialty/{SpecialtyId}/delete")]
+        public ActionResult SpecialtyDelete(int SpecialtyId)
+        {
+              Specialty.Delete(SpecialtyId);
+            List<Specialty> allSpecialty = Specialty.GetAll();
+          
+            return View("Index",allSpecialty);
+        }
+
+
 
     }
 }

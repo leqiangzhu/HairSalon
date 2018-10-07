@@ -29,7 +29,7 @@ namespace HairSalon.Controllers
                                     string clientNote,int clientId)
         {
 
-        Client newClient = new Client(clientName, stylistId,
+        Client newClient = new Client(clientName,
                                         clientPhone ,clientNote, clientId);
         newClient.Save();
         List<Client> allClients = Client.GetAllClients();
@@ -42,7 +42,7 @@ namespace HairSalon.Controllers
         public ActionResult Details(string clientName, int stylistId, string clientPhone,
         string clientNote,int clientId)
         {
-            new Client(clientName, stylistId, clientPhone,clientNote , clientId).Save();
+            new Client(clientName, clientPhone,clientNote , clientId).Save();
             return View("Details", Stylist.Find(stylistId));
         }
 
@@ -83,12 +83,17 @@ namespace HairSalon.Controllers
 
 
 
-           [HttpPost("/client/{clientId}")]
+           [HttpPost("/client/{clientId}/edit")]
         public ActionResult EditClient(int Stylist_Id, string clientName,
                     string clientPhoneNumber,string clientNote,int clientId)
         {
-           Client selectClient =  Client.Find(clientId);
-           selectClient.Edit(clientId);
+        Client selectClient =  Client.Find(clientId);
+       selectClient.Edit(clientId);
+            
+           
+           
+
+
            return RedirectToAction("Details",selectClient);
         }
 
