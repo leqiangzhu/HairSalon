@@ -23,7 +23,7 @@
   <br/>
   <input class="newClient" name="clientNote" type="text" style="height:80px" value="@Model.GetClientNote()">
 
-   <br/> <br/>
+   <!-- <br/> <br/>
   <select class="form-control" class="selectstylist" name="stylistId" style="width: 240px"type="number">
    <p>select a stylist </p>>
    @foreach(Stylist stylist in Stylist.GetAll())
@@ -32,7 +32,7 @@
       <option value="@stylist.GetStylistId()">@stylist.GetStylistName()</option>
     }
 
-  </select>
+  </select> -->
   <br/>
   <button type="submit" class='btn btn-success' >Comfirm</button>
 </form>

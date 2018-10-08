@@ -246,7 +246,7 @@ public class Client
     }
     }
 
-        public void Edit(int id)
+        public void Edit(string clientName, string clientPhoneNumber,string clientNote, int id)
         {
         MySqlConnection conn = DB.Connection();
         conn.Open();
@@ -255,14 +255,13 @@ public class Client
         cmd.CommandText = @"UPDATE clients SET client_name = @clientName,client_phone = @clientPhone,
                      client_note = @clientNote, WHERE client_id = @id;";
 
-                cmd.Parameters.Add(new MySqlParameter("@clientName", this._clientName));
-                //cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
-                cmd.Parameters.Add(new MySqlParameter("@clientPhone", this._clientPhoneNumber));
-                cmd.Parameters.Add(new MySqlParameter("@clientNote", this._clientNote));
+                cmd.Parameters.Add(new MySqlParameter("@clientName", clientName));
+                cmd.Parameters.Add(new MySqlParameter("@clientPhone", clientPhoneNumber));
+                cmd.Parameters.Add(new MySqlParameter("@clientNote", clientNote));
                 cmd.Parameters.Add(new MySqlParameter("@id", id));
 
-        cmd.ExecuteNonQuery();
-        _clientId = (int) cmd.LastInsertedId;
+       // cmd.ExecuteNonQuery();
+       // _clientId = (int) cmd.LastInsertedId;
         conn.Close();
         if (conn != null)
         {

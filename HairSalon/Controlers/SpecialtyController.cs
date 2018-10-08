@@ -40,7 +40,8 @@ namespace HairSalon.Controllers
          [HttpGet("/Specialty/{SpecialtyId}")]
         public ActionResult Details(int SpecialtyId)
         {
-           Specialty SelectSpecialty = Specialty.Find(SpecialtyId);
+            Specialty SelectSpecialty = Specialty.Find(SpecialtyId);
+            List<Stylist> allStylist = SelectSpecialty.GetStylists();
           
             return View(SelectSpecialty);
         }

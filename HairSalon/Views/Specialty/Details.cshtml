@@ -11,30 +11,30 @@ Layout = "_Layout";
 
 
 
-<h2>All the Clients For Specialty: Model.GetClientName()</h2>
+<h3>All the Stylists For Specialty: @Model.GetSpecialtyName()</h3>
 
 <table>
   <tr>
     <th>ID</th>
-    <th>Client name</th>
-    <th>Client phone</th>
+    <th>Stylist name</th>
+    <th>Stylists phone</th>
      <th>specialty</th>
     <th>VIEW</th>
   </tr>
 
 <ul>
-  
-foreach (Client client in Model.GetClients())
+
+@foreach (Stylist st in @Model.GetStylists())
 {
   <tr>
   <td>
-    client.GetClientId()
+    @st.GetStylistId()
   </td>
 <td>
-<h4>client.GetClientName()</h4>
+<h4>@st.GetStylistName()</h4>
 </td>
 <td>
-   client.GetClientPhone()
+  
 </td>
 <td>
    specialty

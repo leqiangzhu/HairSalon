@@ -158,6 +158,47 @@ public static Specialty Find(int id)
 
 
 
+        public  List<Stylist> GetStylists()
+        {
+            List<Stylist> allStylists = new List<Stylist> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+           
+
+            cmd.CommandText = @"SELECT stylists.* FROM specialties 
+            JOIN stylists_specialties ON (specialties.specialty_id = stylists_specialties.specialty_id)
+            JOIN stylists ON (stylists_specialties.stylist_id = stylists.stylist_id)
+            WHERE specialties.specialty_id=@specialtyId;";
+
+            cmd.Parameters.Add(new MySqlParameter("@specialtyId", this._specialtyId));
+
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while (rdr.Read())
+            {
+                int stylistId = rdr.GetInt32(0);
+                string stylistName = rdr.GetString(1);
+                string stylistPhone = rdr.GetString(2);
+                string stylistEmail = rdr.GetString(3);
+                string stylistDate=rdr.GetString(4);
+
+                Stylist newStylist = new Stylist(stylistName,stylistPhone,
+                                        stylistEmail ,stylistDate,stylistId);
+                allStylists.Add(newStylist);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return allStylists;
+        }
+
+
+
+
       
 
 

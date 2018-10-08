@@ -61,6 +61,7 @@ namespace HairSalon.Controllers
         {
 
             Client selectClient = Client.Find(clientId);
+
              return View(selectClient);
 
         }
@@ -84,17 +85,12 @@ namespace HairSalon.Controllers
 
 
            [HttpPost("/client/{clientId}/edit")]
-        public ActionResult EditClient(int Stylist_Id, string clientName,
+        public ActionResult Edit(string clientName,
                     string clientPhoneNumber,string clientNote,int clientId)
         {
-        Client selectClient =  Client.Find(clientId);
-       selectClient.Edit(clientId);
-            
-           
-           
-
-
-           return RedirectToAction("Details",selectClient);
+             Client selectClient =  Client.Find(clientId);
+             selectClient.Edit( clientName,  clientPhoneNumber, clientNote, clientId);
+             return View(selectClient);
         }
 
         // [HttpGet("/client/{clientId}/edit")]
