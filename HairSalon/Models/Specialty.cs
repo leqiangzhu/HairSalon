@@ -60,7 +60,7 @@ public void Save()
     cmd.CommandText = @"INSERT INTO specialties (specialty_name)
          VALUES (@specialtyName);";
     cmd.Parameters.Add(new MySqlParameter("@specialtyName", this._specialtyName));
-
+ 
     cmd.ExecuteNonQuery();
     _specialtyId = (int)cmd.LastInsertedId;
     conn.Close();
@@ -154,6 +154,11 @@ public static Specialty Find(int id)
                 conn.Dispose();
             }
         }
+
+
+
+
+      
 
 
 }

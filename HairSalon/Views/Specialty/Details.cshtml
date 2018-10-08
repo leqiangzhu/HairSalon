@@ -1,0 +1,56 @@
+@{
+Layout = "_Layout"; 
+}
+@using HairSalon.Models;
+
+<div class='container'>
+    <h2>The info of SP:@Model.GetSpecialtyName()</h2>
+     <br/>
+     Client NUM:<span style="color:rgb(35, 201, 201)">xxxx;</span>
+      <br/>
+
+
+
+<h2>All the Clients For Specialty: Model.GetClientName()</h2>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Client name</th>
+    <th>Client phone</th>
+     <th>specialty</th>
+    <th>VIEW</th>
+  </tr>
+
+<ul>
+  
+foreach (Client client in Model.GetClients())
+{
+  <tr>
+  <td>
+    client.GetClientId()
+  </td>
+<td>
+<h4>client.GetClientName()</h4>
+</td>
+<td>
+   client.GetClientPhone()
+</td>
+<td>
+   specialty
+</td>
+<td>
+  <a href="/Client/client.GetClientId()">VIEW</a>
+</td>
+</tr>
+}
+
+</ul>
+</table>
+
+
+
+<hr/>
+<a href='/Specialty'><button class='btn btn-info'>Back Specialty</button></a>
+<a href='/'><button class='btn btn-success'>Back Home</button></a>
+</div>

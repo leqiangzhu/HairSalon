@@ -239,6 +239,11 @@ namespace HairSalon.Models
             return newClients;
         }
 
+
+          
+
+
+
         public static void DeleteAll()
         {
         MySqlConnection conn = DB.Connection();
@@ -264,6 +269,28 @@ namespace HairSalon.Models
             cmd.Parameters.Add(new MySqlParameter("@id", id));
 
             cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+
+          public void AddSpecialty(Specialty newSpecialty)
+        {
+             MySqlConnection conn = DB.Connection();
+             conn.Open();
+             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+             cmd.CommandText= @"INSERT INTO stylists_specialties (stylist_id, specialty_id) 
+                                                        VALUES (@stylistId, @specialtyId);";
+
+
+              cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
+              cmd.Parameters.Add(new MySqlParameter("@specialtyId", newSpecialty.GetSpecialtyId()));
+
+              cmd.ExecuteNonQuery();
+
             conn.Close();
             if (conn != null)
             {

@@ -37,6 +37,14 @@ namespace HairSalon.Controllers
             return View("Index",allSpecialty);
         }
 
+         [HttpGet("/Specialty/{SpecialtyId}")]
+        public ActionResult Details(int SpecialtyId)
+        {
+           Specialty SelectSpecialty = Specialty.Find(SpecialtyId);
+          
+            return View(SelectSpecialty);
+        }
+
 
 
     }

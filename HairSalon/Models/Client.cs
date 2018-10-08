@@ -182,6 +182,56 @@ public class Client
         }
 
 
+          //get the clinet that dont have stylist
+
+            public static List<Client> GetFreeClients()
+        {
+            List<Client> newClients = new List<Client> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+
+
+            cmd.CommandText =  @"SELECT clients.* FROM stylists
+                            JOIN stylist_clients ON (stylists.stylist_id = stylist_clients.stylist_id)
+                            JOIN clients ON (stylist_clients.client_id = clients.client_id)
+                            WHERE stylists.stylist_id >0";
+
+            // cmd.CommandText =  @"SELECT clients.* FROM clients  a  JOIN stylist_clients b ON
+            //                         a.client_id=b.client_id  WHERE b.client_id =2;";
+
+           // cmd.Parameters.Add(new MySqlParameter("@stylistId", this._stylistId));
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+                int clientId = 0;
+                string clientName="";
+                string clientPhoneNumber="";
+                string  clientNote=""; 
+              
+            while (rdr.Read())
+            {
+                 clientId = rdr.GetInt32(0);
+                 clientName=rdr.GetString(1);
+                 clientPhoneNumber=rdr.GetString(2);
+                 clientNote=rdr.GetString(3); 
+              
+             
+              Client newClient = new Client(clientName, clientPhoneNumber,
+          clientNote , clientId);
+            newClients.Add(newClient);
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+            return newClients;
+        }
+
+
+
     public static void DeleteAll()
     {
     MySqlConnection conn = DB.Connection();
@@ -260,7 +310,7 @@ public class Client
         // return newClient;
         // }
 
-        
+
 
 
 
@@ -280,6 +330,28 @@ public class Client
             conn.Dispose();
         }
     }
+
+        //add Specialty to the client
+       public void AddSpecialty(Specialty newSpecialty)
+        {
+             MySqlConnection conn = DB.Connection();
+             conn.Open();
+             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+             cmd.CommandText= @"INSERT INTO clients_specialties (client_id, specialty_id) 
+                                                        VALUES (@clientId, @specialtyId);";
+
+
+              cmd.Parameters.Add(new MySqlParameter("@clientId", this._clientId));
+              cmd.Parameters.Add(new MySqlParameter("@specialtyId", newSpecialty.GetSpecialtyId()));
+
+              cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
 
 
 

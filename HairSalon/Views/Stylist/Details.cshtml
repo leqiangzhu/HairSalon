@@ -57,7 +57,13 @@ Layout = "_Layout";
 <form action="/stylist/@Model.GetStylistId()" method="post">
 <label for="StylistName">Add a new client to @Model.GetStylistName()</label>
 <br/>
-<input id="client_Name" name="clientId" type="text">
+<select class="form-control" class="selectstylist" name="clientId" style="width: 240px">
+   <p>select a stylist </p>
+   @foreach(Client client in Client.GetFreeClients())
+    {
+      <option value="@client.GetClientId()">@client.GetClientName()</option>
+    }
+  </select>
 <br/>
 <button type="submit" class='btn btn-success'>Confirm</button>
 </form>
