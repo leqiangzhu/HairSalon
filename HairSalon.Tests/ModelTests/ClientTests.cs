@@ -10,7 +10,7 @@ namespace HairSalon.Tests
   {
     public ClientTests()
     {
-      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=hairsalon_test;";
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=david_zhu_test;";
     }
 
     public void Dispose()
@@ -33,8 +33,8 @@ namespace HairSalon.Tests
     public void ClientsAreTheSame()
     {
     // Arrange
-    Client firstClient = new Client("David",1,"phone","note");
-    Client secondClient = new Client("David",1,"phone","note");
+    Client firstClient = new Client("David","phone","note");
+    Client secondClient = new Client("David","phone","note");
     //Assert
     Assert.AreEqual(firstClient, secondClient);
     }
@@ -42,8 +42,8 @@ namespace HairSalon.Tests
     [TestMethod]
     public void Clients_GetAll_count() 
     {
-    Client firstClient = new Client("David",1,"phone","note");
-    Client secondClient = new Client("ZHU",1,"phone","note");
+    Client firstClient = new Client("David","phone","note");
+    Client secondClient = new Client("ZHU","phone","note");
      List<Client> ClientsTest = new List<Client> {};
   
      ClientsTest.Add(firstClient);
@@ -60,8 +60,8 @@ namespace HairSalon.Tests
      [TestMethod]
     public void Clients_Find() 
     {
-    Client firstClient = new Client("David",1,"phone","note");
-    Client secondClient = new Client("ZHU",1,"phone","note");
+    Client firstClient = new Client("David","phone","note");
+    Client secondClient = new Client("ZHU","phone","note");
     firstClient.Save();
     secondClient.Save();
     int id=secondClient.GetClientId();
@@ -73,10 +73,10 @@ namespace HairSalon.Tests
       [TestMethod]
     public void Clients_Detele() 
     {
-    Client firstClient = new Client("David",1,"phone","note");
+    Client firstClient = new Client("David","phone","note");
     firstClient.Save();
     int id=firstClient.GetClientId();
-     Client NullClient = new Client("", 0,"","");
+     Client NullClient = new Client("","","");
     
     Client.Delete(id);
     //int num = Client.GetAll().Count;
@@ -90,7 +90,7 @@ namespace HairSalon.Tests
     [TestMethod]
     public void Clients_Detele_Seocond_Way() 
     {
-    Client firstClient = new Client("David",1,"phone","note");
+    Client firstClient = new Client("David","phone","note");
     firstClient.Save();
     int id=firstClient.GetClientId();
     
@@ -105,8 +105,8 @@ namespace HairSalon.Tests
     [TestMethod]
     public void Clients_DeteleAll() 
     {
-    Client firstClient = new Client("David",1,"phone","note");
-    Client secondClient = new Client("ZHU",1,"phone","note");
+    Client firstClient = new Client("David","phone","note");
+    Client secondClient = new Client("ZHU","phone","note");
     firstClient.Save();
     secondClient.Save();
     Client.DeleteAll();
