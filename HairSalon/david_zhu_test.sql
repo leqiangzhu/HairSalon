@@ -1,15 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 01, 2018 at 10:29 PM
--- Server version: 5.6.35
--- PHP Version: 7.0.15
+-- Generation Time: Oct 09, 2018 at 05:52 AM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 --
 -- Database: `david_zhu_test`
@@ -27,19 +26,6 @@ CREATE TABLE `clients` (
   `client_phone` varchar(255) NOT NULL,
   `client_note` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `clients`
---
-
-INSERT INTO `clients` (`client_id`, `client_name`, `client_phone`, `client_note`) VALUES
-(1, 'Abbey', '7654301147', 'note'),
-(2, 'Daisy', '345-4873-3457', 'no'),
-(3, 'Helen', '42588833455', 'note'),
-(4, 'Macy', '347-4564-434', 'note'),
-(5, 'Debbie', '208-4985-345', 'note'),
-(6, 'Angela', '563-2345-2829', 'yes'),
-(7, 'Chris', '783-3454-3243', 'chris@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -63,16 +49,6 @@ CREATE TABLE `specialties` (
   `specialty_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `specialties`
---
-
-INSERT INTO `specialties` (`specialty_id`, `specialty_name`) VALUES
-(18, 'COLOR'),
-(19, 'WASHING'),
-(20, 'CUTTING'),
-(21, 'HAIR DESIGN');
-
 -- --------------------------------------------------------
 
 --
@@ -87,17 +63,6 @@ CREATE TABLE `stylists` (
   `stylist_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `stylists`
---
-
-INSERT INTO `stylists` (`stylist_id`, `stylist_name`, `stylist_phone`, `stylist_email`, `stylist_date`) VALUES
-(1, 'Aaron', '3549871234', 'Aaron@gmail.com', '1'),
-(2, 'David', '3435234', 'davidzhu@gmail.com', '2'),
-(3, 'Larson', '6738888334', 'Larson.sm@yahoo.com', '3'),
-(4, 'Randy', '3455', 'randy.seattle@msn.com', 'E'),
-(6, 'Angela', '42538389897', 'zhu@email', 'date');
-
 -- --------------------------------------------------------
 
 --
@@ -109,18 +74,6 @@ CREATE TABLE `stylists_specialties` (
   `specialty_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `stylists_specialties`
---
-
-INSERT INTO `stylists_specialties` (`stylist_id`, `specialty_id`) VALUES
-(1, 19),
-(1, 21),
-(1, 19),
-(3, 20),
-(6, 20),
-(6, 21);
-
 -- --------------------------------------------------------
 
 --
@@ -131,13 +84,6 @@ CREATE TABLE `stylist_clients` (
   `stylist_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `stylist_clients`
---
-
-INSERT INTO `stylist_clients` (`stylist_id`, `client_id`) VALUES
-(1, 0);
 
 --
 -- Indexes for dumped tables
@@ -176,16 +122,16 @@ ALTER TABLE `stylist_clients`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `specialties`
 --
 ALTER TABLE `specialties`
-  MODIFY `specialty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `specialty_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `stylist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `stylist_id` int(11) NOT NULL AUTO_INCREMENT;
