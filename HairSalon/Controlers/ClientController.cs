@@ -61,8 +61,8 @@ namespace HairSalon.Controllers
         {
 
             Client selectClient = Client.Find(clientId);
-
-             return View(selectClient);
+            Stylist selectstylist=Client.FindStylist(clientId);
+             return View("Details");
 
         }
 

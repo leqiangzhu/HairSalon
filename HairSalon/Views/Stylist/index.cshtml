@@ -17,6 +17,7 @@
   <th>stylist email</th>
   <th>DATE</th>
   <th>view</th>
+   <th>DELETE</th>
   </tr>
   @foreach (Stylist stylist in @Stylist.GetAll())
   {
@@ -35,12 +36,13 @@
        <span class="glyphicons glyphicons-user-add"></span>
       </td>
       <td>
-        <a href='/stylist/@stylist.GetStylistId()'>view</a>
-    <form action="/stylist/@stylist.GetStylistId()/delete" method="post">
+        <a href='/stylist/@stylist.GetStylistId()'><button class='btn btn-warning'>view</button></a>
+    
+    </td>
+    <td>
+<form action="/stylist/@stylist.GetStylistId()/delete" method="post">
     <button class='btn btn-danger' type='submit'>Delete</button>
     </form>
-    
-    
     </td>
     </tr>
   }

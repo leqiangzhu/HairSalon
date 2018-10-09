@@ -17,6 +17,7 @@
  
   <th> NOTE</th>
   <th>VIEW</th>
+  <th>DELETE</th>
   </tr>
 
 
@@ -34,10 +35,14 @@
       </td>
       <td>
         <a href='/Specialty/@specialty.GetSpecialtyId()'><button class='btn btn-primary'>VIEW </button></a>
-        <form action="/Specialty/@specialty.GetSpecialtyId()/delete" method="post">
-    <button class='btn btn-danger' type='submit'>Delete</button>
-    </form>
+       
       </td>
+      
+        <td>
+              <form action="/Specialty/@specialty.GetSpecialtyId()/delete" method="post">
+              <button class='btn btn-danger' type='submit'>Delete</button>
+              </form>
+        </td>
     </tr>
   }
   </table>

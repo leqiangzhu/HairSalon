@@ -352,6 +352,42 @@ public class Client
             }
         }
 
+        //this is a method to Find the STYLIST by clientid , use in client details
+         public static Stylist FindStylist(int clientId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+         cmd.CommandText = @"SELECT * FROM stylists WHERE stylist_id =
+                (SELECT stylist_id FROM stylist_clients WHERE client_id = (@searchId);)";
+
+            cmd.Parameters.Add(new MySqlParameter("@searchId", clientId));
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+                int stylistId = 0;
+                string stylistName = "";
+                string stylistPhone = "";
+                string stylistEmail = "";
+                string stylistDate="";
+
+                while (rdr.Read())
+            {
+                 stylistId = rdr.GetInt32(0);
+                 stylistName = rdr.GetString(1);
+                 stylistPhone = rdr.GetString(2);
+                 stylistEmail = rdr.GetString(3);
+                 stylistDate=rdr.GetString(4);
+            }
+            Stylist foundStylist = new Stylist(stylistName,stylistPhone, stylistEmail ,stylistDate,stylistId);
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+            return foundStylist;
+        }
 
 
 }

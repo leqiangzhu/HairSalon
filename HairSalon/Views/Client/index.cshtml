@@ -16,7 +16,8 @@
   <th>client phone</th>
   <th>client email</th>
   <th>client NOTE</th>
-  <th>view</th>
+  <th width="150">view</th>
+  <th>Delete</th>
   </tr>
 
 
@@ -39,10 +40,15 @@
       @client.GetClientNote()
       </td>
       <td>
+       
         <a href ="/client/@client.GetClientId()"><button class='btn btn-info'>view</button></a>
+        
+     <a href='/client/@client.GetClientId()/edit'><button class='btn btn-warning'>EDIT</button></a>
+      </td>
+      <td>
         <form action="/client/@client.GetClientId()/delete" method="post">
-    <button class='btn btn-danger' type='submit'>Delete</button>
-    </form>
+            <button class='btn btn-danger' type='submit'>Delete</button>
+            </form>
       </td>
     </tr>
   }
