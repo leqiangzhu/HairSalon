@@ -92,7 +92,7 @@
 * GitHub
 * MAMP
 * .NET
-<img src= "https://d3u03kk87rjfaq.cloudfront.net/wp-content/uploads/2018/01/04113335/woman-at-hair-salon.jpg">
+<img src= "https://epicenter.epicodus.com/assets/logo-c7cd8a523c273e7e330a944e559d94dbc6d9fbe84db6467039500d3afb4c0da5.png">
 
 ## Support and Contact Details
 
