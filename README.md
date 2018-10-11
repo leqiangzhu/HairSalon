@@ -92,7 +92,7 @@
 * GitHub
 * MAMP
 * .NET
-
+<img src= "https://d3u03kk87rjfaq.cloudfront.net/wp-content/uploads/2018/01/04113335/woman-at-hair-salon.jpg">
 
 ## Support and Contact Details
 
