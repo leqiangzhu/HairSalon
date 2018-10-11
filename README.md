@@ -92,7 +92,7 @@
 * GitHub
 * MAMP
 * .NET
-<img height ="600"src= "https://epicenter.epicodus.com/assets/logo-c7cd8a523c273e7e330a944e559d94dbc6d9fbe84db6467039500d3afb4c0da5.png">
+<img height ="600" src= "https://epicenter.epicodus.com/assets/logo-c7cd8a523c273e7e330a944e559d94dbc6d9fbe84db6467039500d3afb4c0da5.png"/>
 
 ## Support and Contact Details
 
